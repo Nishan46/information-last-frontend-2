@@ -20,6 +20,7 @@
     color:red;
     padding: 0;
     padding-left: 10px;
+    background-color: transparent;
 }
 
 .birthday-normal > input[type="date"]{
@@ -32,12 +33,13 @@
     padding: 0;
     padding-left: 10px;
     color:black;
+    background-color: transparent;
 }
 
 .birth-container-normal{
     width: calc(100% - 10px);
     height: 55px;
-    border: 1px solid rgb(209, 208, 208);
+    border: 1px solid rgb(45, 45, 45,0.25);
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -45,6 +47,9 @@
     flex-direction: column;
     padding-right: 10px;
     justify-content: center;
+}
+.birth-container-normal:hover{
+    border: 1px solid rgb(45, 45, 45,0.8);
 }
 .birth-container-error{
     width: calc(100% - 10px);

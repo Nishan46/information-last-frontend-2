@@ -22,14 +22,16 @@
 .gender-container-normal{
     width: calc(100% - 20px);
     height: fit-content;
-    border: 1px solid rgb(209, 208, 208);
+    border: 1px solid rgb(45, 45, 45,0.25);
     border-radius: 4px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     color: red !important;
 }
-
+.gender-container-normal:hover{
+    border: 1px solid rgb(45, 45, 45,0.8);
+}
 .gender-container-error{
     width: calc(100% - 20px);
     height: fit-content;
@@ -39,8 +41,6 @@
     flex-direction: column;
     justify-content: center;
 }
-
-
 .MuiRadio-root{
     width: 5px !important;
     height: 5px !important;
@@ -67,16 +67,16 @@
     width: calc(100% - 20px);
     height:fit-content;
     display: flex;
-    border: 1px solid rgb(209, 208, 208);
+    border: 1px solid rgb(45, 45, 45,0.25);
     border-radius: 4px;
     flex-direction:column;
+}
+.category-container:hover{
+    border: 1px solid rgb(45, 45, 45,0.8);
 }
 .category-container .MuiSvgIcon-root {
     position: relative !important;
     font-size: 1 rem !important;
-}
-.category-container:hover{
-    border: 1px solid black;
 }
 .btn-next{
     margin-top: 40px;
@@ -91,9 +91,10 @@
     top: -12px;
     width: calc(100% - 10px);
     left: 5px;
-    color: rgb(232, 37, 37);
+    color: rgb(255, 0, 3);
     text-transform: capitalize;
-    background-color: rgb(255, 240, 240);
+    background-color: rgb(255, 210, 210,1);
+    backdrop-filter: blur(10px);
     padding: 2px;
     border-radius: 5px;
     display: flex;

@@ -12,25 +12,16 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const registerData = {user_name:"",first_name:"",last_name:"",admission_id:"",grade:"",full_name:"",email:"",phone:"",address:"",birthday:"",gender:""}
 
-
+const categoryData = {photoghaphy:false,videography:false,technical:false,announcing:false,reporting:false,photo_editing:false,video_editing:false,graphic_design:false,web_design:false}
 
 
 
 function REG_PERSONAL() {
 
   const [registerValues,setRegisterValues] = useState(registerData);
+  const [categoryValues,setCategoryValues] = useState(categoryData);
   const [errorValues,setErrorValues] = useState({});
   const [isSubmitted,setIssubmitted] = useState(false);
-
-  const [isphotography,setPhotography] = useState(false) 
-  const [isvideography,setVideography] = useState(false) 
-  const [istechnical,setTechnical] = useState(false) 
-  const [isannouncing,setAnnouncing] = useState(false) 
-  const [isreporting,setReporting] = useState(false) 
-  const [isphotoediting,setPhotoediting] = useState(false) 
-  const [isvideoediting,setVideoediting] = useState(false) 
-  const [isgraphicdesigning,setGraphicDesigning] = useState(false) 
-  const [iswebdesigning,setWebdesigning] = useState(false)
 
   const HandleSubmit = (event) =>{
     event.preventDefault();
@@ -90,6 +81,7 @@ function REG_PERSONAL() {
   useEffect(() => {
     if (Object.keys(errorValues).length === 0 && isSubmitted) {
       console.log(registerValues);
+      console.log(categoryValues);
     }
   }, [errorValues]);
 
@@ -103,6 +95,10 @@ function REG_PERSONAL() {
     {
       setErrorValues({...errorValues,[name]:false})
     }
+  }
+  const HandleChecked = (e) =>{
+    const {name, checked} = e.target;
+    setCategoryValues({...categoryValues,[name]:checked});
   }
 
   return (
@@ -150,14 +146,15 @@ function REG_PERSONAL() {
           
           <label>Categories Your Interested</label>
           <div className='category-container'>
-              <label><Checkbox onChange={(e)=>{console.log(e.target.checked)}} {...label}  size='small' />Photography </label>
-              <label><Checkbox {...label}  size='small' />Videography</label>
-              <label><Checkbox {...label}  size='small' />Technical </label>
-              <label> <Checkbox {...label}  size='small' />Announcing</label>
-              <label> <Checkbox {...label}  size='small' />Reporting</label>
-              <label><Checkbox {...label}  size='small' />Photo & Video Editing </label>
-              <label><Checkbox {...label}  size='small' />Graphic Designing </label>
-              <label><Checkbox {...label}  size='small' />Web Designing </label>
+              <label><Checkbox onChange={HandleChecked} name={'photoghaphy'}   {...label}  size='small' />Photography </label>
+              <label><Checkbox onChange={HandleChecked} name={'videography'} {...label}  size='small' />Videography</label>
+              <label><Checkbox onChange={HandleChecked} name={'technical'} {...label}  size='small' />Technical </label>
+              <label> <Checkbox onChange={HandleChecked} name={'announcing'} {...label}  size='small' />Announcing</label>
+              <label> <Checkbox onChange={HandleChecked} name={'reporting'} {...label}  size='small' />Reporting</label>
+              <label><Checkbox onChange={HandleChecked} name={'photo_editing'} {...label}  size='small' />Photo Editing</label>
+              <label><Checkbox onChange={HandleChecked} name={'video_editing'} {...label}  size='small' />Video Editing </label>
+              <label><Checkbox onChange={HandleChecked} name={'graphic_design'} {...label}  size='small' />Graphic Designing </label>
+              <label><Checkbox onChange={HandleChecked} name={'web_design'} {...label}  size='small' />Web Designing </label>
           </div>
           <div className='btn-container'>
               <Button className='btnsubmit' type='submit' variant='contained'>Register</Button>
