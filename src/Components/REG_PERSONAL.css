@@ -1,0 +1,103 @@
+.reg-form{
+    width: 100%;
+    height: 100%;
+}
+.form-data{
+    margin: 0 auto;
+    width: 95%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.form-data *{
+    margin: 10px;
+    padding-right: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+.gender-container-normal{
+    width: calc(100% - 20px);
+    height: fit-content;
+    border: 1px solid rgb(209, 208, 208);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: red !important;
+}
+
+.gender-container-error{
+    width: calc(100% - 20px);
+    height: fit-content;
+    border: 1px solid rgb(247, 4, 4);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.MuiRadio-root{
+    width: 5px !important;
+    height: 5px !important;
+    border-radius: 50% !important;
+    position: absolute !important;
+    top: calc(50% - 20px) !important;
+    display: flex;
+    align-items: center;
+    margin-left: 20px !important; 
+}
+.MuiSvgIcon-root{
+    position: absolute !important;
+    padding: 0 !important;
+    top: 0 !important;
+    margin: 0;
+    left: 0 !important;
+}
+.MuiTypography-root{
+    position: relative !important;
+    left: 20px !important;
+    margin-left: 20px !important;
+}
+.category-container{
+    width: calc(100% - 20px);
+    height:fit-content;
+    display: flex;
+    border: 1px solid rgb(209, 208, 208);
+    border-radius: 4px;
+    flex-direction:column;
+}
+.category-container .MuiSvgIcon-root {
+    position: relative !important;
+    font-size: 1 rem !important;
+}
+.category-container:hover{
+    border: 1px solid black;
+}
+.btn-next{
+    margin-top: 40px;
+    display: flex;
+    width: calc(100% - 20px);
+    height: fit-content;
+    align-items: center;
+    justify-content: flex-end;
+}
+.error-alert{
+    position: relative;
+    top: -12px;
+    width: calc(100% - 10px);
+    left: 5px;
+    color: rgb(232, 37, 37);
+    text-transform: capitalize;
+    background-color: rgb(255, 240, 240);
+    padding: 2px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-family: Poppins 'sans-serif';
+    display: none;
+}

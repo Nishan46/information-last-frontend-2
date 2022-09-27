@@ -1,0 +1,45 @@
+.gender-conts{
+    display: flex;
+    width: 135px;
+}
+.radio{
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 10px;
+    justify-content: center;
+    cursor: pointer;
+    display: inline-block;
+    top: 10px;
+    width: 150px;
+    left: -15px;
+}
+
+.radio input[type="radio"]{
+    display: none;
+}
+.radio span{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(238, 239, 243);
+    position: relative;
+}
+
+.radio span:after{
+    content: "";
+    position: absolute;
+    width:10px;
+    height: 10px;
+    background-color: rgb(71, 130, 233);
+    top: 5px;
+    left: 5px;
+    border-radius: 50%;
+    display: block;
+    transform: scale(0);
+    transition: 200ms ease-in-out 0s;
+}
+
+.radio input[type="radio"]:checked ~ span:after{
+    transform: scale(1);
+}

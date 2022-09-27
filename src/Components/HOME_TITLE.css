@@ -1,0 +1,100 @@
+@media only screen and (min-width:300px){
+    .title-container{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-weight: 900;
+        color: white;
+        margin: 0 auto;
+        width: 95%;
+
+
+    }
+
+    .title-container > img{
+        width: 250px;
+        margin: 20px 0;
+        cursor: pointer;
+    }
+    .title-container > h1{
+        font-size: 21px;
+    }
+    .title-container > p{
+        font-size: 15px;
+        color: rgb(151, 148, 148);
+    }
+
+    
+}
+
+
+@media only screen and (min-width:1366px){
+    .title-container{
+        position: relative;
+        top: -50px;
+        width: fit-content;
+        height: 400px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        font-weight: 900;
+        color: white;
+        margin-left: 20px;
+    }
+    .title-container > img{
+        width: 250px;
+        margin-bottom: 20px;
+        position: relative;
+        left: calc(50% - 200px);
+        cursor: pointer;
+    }
+    
+    .title-container > h1{
+        font-size: 30px;
+        /* text-decoration: underline 4px; */
+    }
+    .title-container > p{
+        font-size: 15px;
+        color: rgb(151, 148, 148);
+    }
+    
+}
+
+
+
+
+@media only screen and (min-width:1800px){
+    .title-container{
+        position: relative;
+        top: -50px;
+        width: fit-content;
+        height: 400px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        font-weight: 900;
+        color: white;
+        margin-left: 50px;
+    }
+    .title-container > img{
+        width: 400px;
+        margin-bottom: 50px;
+        position: relative;
+        left: calc(50% - 200px);
+        cursor: pointer;
+    }
+    
+    .title-container > h1{
+        font-size: 50px;
+        /* text-decoration: underline 4px; */
+    }
+    .title-container > p{
+        font-size: 20px;
+        color: rgb(151, 148, 148);
+    }
+    
+}

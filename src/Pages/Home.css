@@ -1,0 +1,106 @@
+@media only screen and (max-width:1365px){
+    body{
+        background-image: url('../Assests/background.jpg');
+        box-sizing: stretch;
+        background-repeat: no-repeat;
+        background-size: 400%;
+    }
+    @media only screen and (orientation:portrait){
+        .home{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            padding-bottom: 1px;
+        }
+    }
+    @media only screen and (orientation:landscape){
+
+        @media only screen and (min-height:0px){
+            .home-container{
+                position: relative;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(8px);
+                padding-bottom: 1px;
+            }
+        }
+        @media only screen and (min-height:400px) {
+            .home-container{
+                position: absolute;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                top: 0;
+                background-color: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(8px);
+                padding-bottom: 1px;
+            }
+        }
+        
+    }
+}
+
+@media only screen and (min-width:1366px){
+    body{
+        background-image: url('../Assests/background.jpg');
+        box-sizing: stretch;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .home{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(8px);    
+    
+    }
+    .home-container{
+        position: absolute;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        width:1000px;
+        margin: 0 auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+@media only screen and (min-width:1800px){
+    body{
+        background-image: url('../Assests/background.jpg');
+        box-sizing: stretch;
+    }
+    
+    .home{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(8px);
+    
+    }
+    .home-container{
+        position: absolute;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        width:95%;
+        margin: 0 auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}

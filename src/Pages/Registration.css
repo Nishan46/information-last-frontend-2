@@ -1,0 +1,39 @@
+.reg-body{
+    position:absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+    /* background-color: rgba(8, 8, 8, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px; */
+}
+.reg-heading{
+    flex: 0.3;
+}
+.personals{
+    flex: 0.7;
+    padding:50px 0;
+}
+
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: fit-content;
+}
+
+.btnsubmit{
+    background-color: black !important;
+    width: 100px;
+}
+
+
+.btnsubmit:hover{
+    background-color: rgb(71, 69, 69) !important;
+    color:  rgb(255, 248, 248) !important;
+}
