@@ -5,6 +5,8 @@ import Radio from '@mui/material/Radio'
 import Checkbox from '@mui/material/Checkbox';
 import { useState ,useEffect } from 'react';
 import BirthDay from './BirthDay'
+import {useDispatch} from 'react-redux';
+import { setData , setLoader} from '../Frontend/features/memberSlice';
 
 
 
@@ -18,7 +20,6 @@ const categoryData = {photoghaphy:false,videography:false,technical:false,announ
 
 
 function REG_PERSONAL() {
-
   const [registerValues,setRegisterValues] = useState(registerData);
   const [categoryValues,setCategoryValues] = useState(categoryData);
   const [errorValues,setErrorValues] = useState({});
@@ -78,11 +79,11 @@ function REG_PERSONAL() {
     return errors;
   }
 
-  
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (Object.keys(errorValues).length === 0 && isSubmitted) {
-      console.log(registerValues);
-      console.log(categoryValues);
+      dispatch(setData({isload:true ,member_data:registerValues,category_data:categoryValues}))
     }
   }, [errorValues]);
 
@@ -103,6 +104,7 @@ function REG_PERSONAL() {
   }
 
   return (
+    
     <form onSubmit={HandleSubmit}>
           <label htmlFor='txtmail'>Email Adress</label>
           <TextField id='txtmail' name='email'  fullWidth placeholder='Email' value={registerValues.email} error={errorValues.email && true} onChange={HandleChange}/>

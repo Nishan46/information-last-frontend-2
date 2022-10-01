@@ -1,4 +1,4 @@
-import React from 'react'
+import {React,useState ,useEffect} from 'react'
 import './Registration.css'
 import REG_HEADER from '../Components/REG_HEADER'
 import REG_PERSONAL from '../Components/REG_PERSONAL'
@@ -9,11 +9,37 @@ import REG_Photoed from '../Components/REG_Photoed'
 import REG_Videoed from '../Components/REG_Videoed'
 import REG_Graphic from '../Components/REG_Graphics'
 import { Button } from '@mui/material'
+import {useSelector,useDispatch} from 'react-redux'
 import LOADER from '../Additonals/LOADER'
+import { setLoad } from '../Frontend/features/memberSlice'
+import axios from 'axios';
+
 function Registration() {
+  
+  const isloads = useSelector((state)=>state.member.isload);
+  const category_data = useSelector((state)=>state.member.category_data);
+  const member_data = useSelector((state)=>state.member.member_data);
+  const dispatch = useDispatch();
+
+  const PostMember = async () => {
+    const result = await axios.post(`/api/member-data`,{"member-data":member_data,"category-data":category_data});
+    console.log(result.data);
+    dispatch(setLoad(false));
+  };
+
+  useEffect(()=>{
+    if(isloads)
+    {
+      PostMember();
+      // setTimeout(()=>{   
+        
+      // },10)
+    }
+  },[isloads])
+
   return (
     <div className='reg-body'>
-      {/* <LOADER show={true}/> */}
+      <LOADER show={isloads}/>
       <div className='reg-heading'>
         <REG_HEADER/>
       </div>
