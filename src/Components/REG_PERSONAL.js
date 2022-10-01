@@ -5,7 +5,8 @@ import Radio from '@mui/material/Radio'
 import Checkbox from '@mui/material/Checkbox';
 import { useState ,useEffect } from 'react';
 import BirthDay from './BirthDay'
-import ErrorIcon from '@mui/icons-material/Error';
+
+
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -169,7 +170,7 @@ const Valid_Gender = (props) =>{
       <div className='gender-container-error'>
         <FormControl>
           <RadioGroup
-            row
+            row={false}
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="gender"
             onChange={props.onChange}
@@ -189,7 +190,7 @@ const Valid_Gender = (props) =>{
       <div className='gender-container-normal'>
         <FormControl>
           <RadioGroup
-            row
+            row={false}
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="gender"
             onChange={props.onChange}

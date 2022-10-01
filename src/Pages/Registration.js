@@ -9,9 +9,11 @@ import REG_Photoed from '../Components/REG_Photoed'
 import REG_Videoed from '../Components/REG_Videoed'
 import REG_Graphic from '../Components/REG_Graphics'
 import { Button } from '@mui/material'
+import LOADER from '../Additonals/LOADER'
 function Registration() {
   return (
     <div className='reg-body'>
+      {/* <LOADER show={true}/> */}
       <div className='reg-heading'>
         <REG_HEADER/>
       </div>
@@ -22,8 +24,8 @@ function Registration() {
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   )
 }
 
-export default Registration
+export default Registration 

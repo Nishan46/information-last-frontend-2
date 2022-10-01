@@ -1,9 +1,11 @@
 @media only screen and (max-width:1365px){
     body{
-        background-image: url('../Assests/background.jpg');
-        box-sizing: stretch;
+        background-image: url('../Assests/backgrounds.jpg');
+        box-sizing: border-box;
         background-repeat: no-repeat;
-        background-size: 400%;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
     }
     @media only screen and (orientation:portrait){
         .home{
@@ -13,7 +15,7 @@
             right: 0;
             bottom: 0;
             background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(1px);
             padding-bottom: 1px;
         }
     }
@@ -24,7 +26,7 @@
                 position: relative;
                 bottom: 0;
                 background-color: rgba(0, 0, 0, 0.7);
-                backdrop-filter: blur(8px);
+                backdrop-filter: blur(5px);
                 padding-bottom: 1px;
             }
         }
@@ -36,7 +38,7 @@
                 bottom: 0;
                 top: 0;
                 background-color: rgba(0, 0, 0, 0.7);
-                backdrop-filter: blur(8px);
+                backdrop-filter: blur(1px);
                 padding-bottom: 1px;
             }
         }
@@ -46,7 +48,7 @@
 
 @media only screen and (min-width:1366px){
     body{
-        background-image: url('../Assests/background.jpg');
+        background-image: url('../Assests/backgrounds.jpg');
         box-sizing: stretch;
         background-repeat: no-repeat;
         background-size: cover;
@@ -59,7 +61,7 @@
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(8px);    
+        backdrop-filter: blur(1px);    
     
     }
     .home-container{
@@ -77,7 +79,7 @@
 }
 @media only screen and (min-width:1800px){
     body{
-        background-image: url('../Assests/background.jpg');
+        background-image: url('../Assests/backgrounds.jpg');
         box-sizing: stretch;
     }
     
@@ -88,7 +90,7 @@
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(1px);
     
     }
     .home-container{
