@@ -9,7 +9,37 @@
     background-size: cover;
     overflow-y: none;
 }
+/* .language-selector{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+.language-selector > select{
+    width:100px;
+    padding:10px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    outline: none;
+    color: rgb(245, 245, 245);
+}
+.language-selector option{
+    color: black;
+    background-color: rgb(255, 255, 255);
+} */
 
+
+.language-selector .MuiSelect-outlined{
+    color: white !important;
+    border: 2px solid white !important;
+    border-radius: 5px;
+
+}
+.language-selector .MuiSelect-iconOutlined{
+    color: white;
+    z-index: 1 !important;
+}
 
 @media only screen and (max-width:550px){
     .reg-header .blur-head{
@@ -23,8 +53,8 @@
         height: 100vh;
     }
     .reg-header #reg-logo{
-        width: 300px;
-        margin-left: -20px;
+        width: 250px;
+        margin-left: -15px;
     }
     
     .header-texts{

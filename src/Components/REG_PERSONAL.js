@@ -7,8 +7,8 @@ import { useState ,useEffect } from 'react';
 import BirthDay from './BirthDay'
 import {useDispatch} from 'react-redux';
 import { setData , setLoader} from '../Frontend/features/memberSlice';
-
-
+import Language from '../Languages'
+import {useSelector} from 'react-redux';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -24,6 +24,9 @@ function REG_PERSONAL() {
   const [categoryValues,setCategoryValues] = useState(categoryData);
   const [errorValues,setErrorValues] = useState({});
   const [isSubmitted,setIssubmitted] = useState(false);
+  const [isCategoryChoosed,setisCategoryChoosed] = useState(true);
+  const currentLanguage = useSelector((state)=>state.lang.language);
+  
 
   const HandleSubmit = (event) =>{
     event.preventDefault();
@@ -82,8 +85,22 @@ function REG_PERSONAL() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (Object.keys(errorValues).length === 0 && isSubmitted) {
-      dispatch(setData({isload:true ,member_data:registerValues,category_data:categoryValues}))
+    if (Object.keys(errorValues).length === 0 && isSubmitted && isCategoryChoosed) {
+      for(let items in categoryValues)
+      {
+        if(categoryValues[items] === true)
+        {
+          document.documentElement.scrollTop = 0;
+          dispatch(setData({isload:true ,member_data:registerValues,category_data:categoryValues}))
+          setisCategoryChoosed(true);
+          break;
+        }
+        else
+        {
+          setisCategoryChoosed(false);
+        }
+      }
+
     }
   }, [errorValues]);
 
@@ -101,64 +118,54 @@ function REG_PERSONAL() {
   const HandleChecked = (e) =>{
     const {name, checked} = e.target;
     setCategoryValues({...categoryValues,[name]:checked});
+    setisCategoryChoosed(true);
   }
 
   return (
-    
     <form onSubmit={HandleSubmit}>
-          <label htmlFor='txtmail'>Email Adress</label>
-          <TextField id='txtmail' name='email'  fullWidth placeholder='Email' value={registerValues.email} error={errorValues.email && true} onChange={HandleChange}/>
+          <label htmlFor='txtmail'>{Language[currentLanguage].email}</label>
+          <TextField id='txtmail' type={'email'} required name='email'  fullWidth placeholder={Language[currentLanguage].email}  value={registerValues.email} error={errorValues.email && true} onChange={HandleChange}/>
           {errorValues.email && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.email}</p></div>}
 
-          <label htmlFor='txtfirst'>First Name</label>
-          <TextField id='txtfirst' name='first_name' placeholder='First Name' fullWidth value={registerValues.first_name} error={errorValues.first_name && true} onChange={HandleChange}/>
+          <label htmlFor='txtfirst'>{Language[currentLanguage].first_name}</label>
+          <TextField id='txtfirst'  required name='first_name' placeholder={Language[currentLanguage].first_name}  fullWidth value={registerValues.first_name} error={errorValues.first_name && true} onChange={HandleChange}/>
           {errorValues.first_name && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.first_name}</p></div>}
           
-          <label htmlFor='txtlast'>Last Name</label>
-          <TextField id='txtlast' name='last_name' fullWidth placeholder='Last Name' value={registerValues.last_name} error={errorValues.last_name && true} onChange={HandleChange}/>
+          <label htmlFor='txtlast'>{Language[currentLanguage].last_name}</label>
+          <TextField id='txtlast' required name='last_name' fullWidth placeholder={Language[currentLanguage].last_name}  value={registerValues.last_name} error={errorValues.last_name && true} onChange={HandleChange}/>
           {errorValues.last_name && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.last_name}</p></div>}
 
-          <label htmlFor='txtfull'>Full Name</label>
-          <TextField id='txtfull' name='full_name' fullWidth placeholder='Full Name' value={registerValues.full_name} error={errorValues.full_name && true} onChange={HandleChange}/>
+          <label htmlFor='txtfull'>{Language[currentLanguage].full_name}</label>
+          <TextField id='txtfull' required name='full_name' fullWidth placeholder={Language[currentLanguage].full_name}  value={registerValues.full_name} error={errorValues.full_name && true} onChange={HandleChange}/>
           {errorValues.full_name && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.full_name}</p></div>}
 
-          <label htmlFor='txtbirth'>Birth Day</label>
+          <label htmlFor='txtbirth'>{Language[currentLanguage].birthday}</label>
 
           <BirthDay value={registerValues.birthday} name='birthday' onChange={HandleChange} error={errorValues.birthday && true}/>
             {errorValues.birthday && <div style={{'display':'block','top':'-1px'}} className='error-alert'><p>{errorValues.birthday}</p></div>}
           
 
-          <label htmlFor='txtaddress'>Address</label>
-          <TextField id='txtaddress' name='address' fullWidth placeholder='Address' value={registerValues.address} error={errorValues.address && true} onChange={HandleChange}/>
+          <label htmlFor='txtaddress'>{Language[currentLanguage].address}</label>
+          <TextField id='txtaddress' required name='address' fullWidth placeholder={Language[currentLanguage].address}  value={registerValues.address} error={errorValues.address && true} onChange={HandleChange}/>
           {errorValues.address && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.address}</p></div>}
 
-          <label htmlFor='txtgrade'>Grade</label>
-          <TextField id='txtgrade' name='grade' fullWidth placeholder='Grade' value={registerValues.grade} error={errorValues.grade && true} onChange={HandleChange}/>
+          <label htmlFor='txtgrade'>{Language[currentLanguage].grade}</label>
+          <TextField id='txtgrade' required name='grade' fullWidth placeholder={Language[currentLanguage].grade}  value={registerValues.grade} error={errorValues.grade && true} onChange={HandleChange}/>
           {errorValues.grade && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.grade}</p></div>}
 
-          <label htmlFor='txtindex'>Index Number</label>
-          <TextField id='txtindex' name='admission_id' fullWidth placeholder='Index Number 'value={registerValues.admission_id} error={errorValues.admission_id && true} onChange={HandleChange}/>
+          <label htmlFor='txtindex'>{Language[currentLanguage].admission_id}</label>
+          <TextField id='txtindex' required name='admission_id' fullWidth placeholder={Language[currentLanguage].admission_id} value={registerValues.admission_id} error={errorValues.admission_id && true} onChange={HandleChange}/>
           {errorValues.admission_id && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.admission_id}</p></div>}
 
-          <label htmlFor='txtmobile'>Mobile Number</label>
-          <TextField id='txtmobile' name='phone' fullWidth placeholder='Mobile Number 'value={registerValues.phone} error={errorValues.phone && true} onChange={HandleChange}/>
+          <label htmlFor='txtmobile'>{Language[currentLanguage].phone}</label>
+          <TextField id='txtmobile' required name='phone' fullWidth placeholder={Language[currentLanguage].phone} value={registerValues.phone} error={errorValues.phone && true} onChange={HandleChange}/>
           {errorValues.phone && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.phone}</p></div>}
 
-          <label htmlFor='gndbox'>Gender</label>
-          <Valid_Gender error={errorValues.gender && true} onChange={HandleChange} er={errorValues.gender}/>
+          <label htmlFor='gndbox'>{Language[currentLanguage].gender}</label>
+          <Valid_Gender currentLanguage={currentLanguage} error={errorValues.gender && true} onChange={HandleChange} er={errorValues.gender}/>
           
-          <label>Categories Your Interested</label>
-          <div className='category-container'>
-              <label><Checkbox onChange={HandleChecked} name={'photoghaphy'}   {...label}  size='small' />Photography </label>
-              <label><Checkbox onChange={HandleChecked} name={'videography'} {...label}  size='small' />Videography</label>
-              <label><Checkbox onChange={HandleChecked} name={'technical'} {...label}  size='small' />Technical </label>
-              <label> <Checkbox onChange={HandleChecked} name={'announcing'} {...label}  size='small' />Announcing</label>
-              <label> <Checkbox onChange={HandleChecked} name={'reporting'} {...label}  size='small' />Reporting</label>
-              <label><Checkbox onChange={HandleChecked} name={'photo_editing'} {...label}  size='small' />Photo Editing</label>
-              <label><Checkbox onChange={HandleChecked} name={'video_editing'} {...label}  size='small' />Video Editing </label>
-              <label><Checkbox onChange={HandleChecked} name={'graphic_design'} {...label}  size='small' />Graphic Designing </label>
-              <label><Checkbox onChange={HandleChecked} name={'web_design'} {...label}  size='small' />Web Designing </label>
-          </div>
+          <label>{Language[currentLanguage].Categories_Your_Interested}</label>
+          <ValidCategory currentLanguage={currentLanguage} valid={isCategoryChoosed} HandleChecked={HandleChecked}/>
           <div className='btn-container'>
               <Button className='btnsubmit' type='submit' variant='contained'>Register</Button>
             </div>
@@ -178,9 +185,9 @@ const Valid_Gender = (props) =>{
             onChange={props.onChange}
             error={props.er}
           >
-            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Male" control={<Radio size='small'/>} label="Male" />
-            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Female" control={<Radio size='small'/>} label="Female" />
-            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Other" control={<Radio size='small'/>} label="Other" />
+            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Male" control={<Radio required size='small'/>} label={Language[props.currentLanguage].male} />
+            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Female" control={<Radio required size='small'/>} label={Language[props.currentLanguage].female}/>
+            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Other" control={<Radio required size='small'/>} label={Language[props.currentLanguage].other}/>
           </RadioGroup>
         </FormControl>
         {props.er && <div style={{'display':'block'}} className='error-alert'><p>{props.er}</p></div>}
@@ -209,5 +216,39 @@ const Valid_Gender = (props) =>{
   }
 }
 
+
+const ValidCategory =(props) =>{
+  if(props.valid){
+    return(
+        <div className='category-container-normal'>
+                <label><Checkbox onChange={props.HandleChecked}  name={'photoghaphy'}   {...label}  size='small' />{Language[props.currentLanguage].Photography} </label>
+                <label><Checkbox onChange={props.HandleChecked}  name={'videography'} {...label}  size='small' />{Language[props.currentLanguage].Videography}</label>
+                <label><Checkbox onChange={props.HandleChecked}  name={'technical'} {...label}  size='small' /> {Language[props.currentLanguage].Technical }  </label>
+                <label> <Checkbox onChange={props.HandleChecked} name={'announcing'} {...label}  size='small' /> {Language[props.currentLanguage].Announcing } </label>
+                <label> <Checkbox onChange={props.HandleChecked} name={'reporting'} {...label}  size='small' /> {Language[props.currentLanguage].Reporting } </label>
+                <label><Checkbox onChange={props.HandleChecked} name={'photo_editing'} {...label}  size='small' /> {Language[props.currentLanguage].Photo_Editing} </label>
+                <label><Checkbox onChange={props.HandleChecked} name={'video_editing'} {...label}  size='small' /> {Language[props.currentLanguage].Video_Editing}  </label>
+                <label><Checkbox onChange={props.HandleChecked} name={'graphic_design'} {...label}  size='small' />{Language[props.currentLanguage].Graphic_Designing} </label>
+                <label><Checkbox onChange={props.HandleChecked} name={'web_design'} {...label}  size='small' /> {Language[props.currentLanguage].Web_Designing }</label>
+      </div>
+    )
+  }
+  else
+  {
+    return(
+      <div className='category-container-error'>
+              <label><Checkbox onChange={props.HandleChecked}  name={'photoghaphy'}   {...label}  size='small' />  {Language[props.currentLanguage].Photography} </label>
+              <label><Checkbox onChange={props.HandleChecked}  name={'videography'} {...label}  size='small' />  {Language[props.currentLanguage].Videography}</label>
+              <label><Checkbox onChange={props.HandleChecked}  name={'technical'} {...label}  size='small' />  {Language[props.currentLanguage].Technical }  </label>
+              <label> <Checkbox onChange={props.HandleChecked} name={'announcing'} {...label}  size='small' />{Language[props.currentLanguage].Announcing } </label>
+              <label> <Checkbox onChange={props.HandleChecked} name={'reporting'} {...label}  size='small' />  {Language[props.currentLanguage].Reporting } </label>
+              <label><Checkbox onChange={props.HandleChecked} name={'video_editing'} {...label}  size='small' /> {Language[props.currentLanguage].Photo_Editing}</label>
+              <label><Checkbox onChange={props.HandleChecked} name={'photo_editing'} {...label}  size='small' /> {Language[props.currentLanguage].Video_Editing}</label>
+              <label><Checkbox onChange={props.HandleChecked} name={'graphic_design'} {...label}  size='small' /> {Language[props.currentLanguage].Graphic_Designing}</label>
+              <label><Checkbox onChange={props.HandleChecked} name={'web_design'} {...label}  size='small' />  {Language[props.currentLanguage].Web_Designing }</label>
+      </div>
+    )
+  }
+}
 
 export default REG_PERSONAL

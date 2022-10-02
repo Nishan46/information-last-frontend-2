@@ -16,7 +16,7 @@ function Error_oc(props){
   return(
     <div className='birth-container-error'>
       <div className='birthday-error'>
-          <input onChange={props.onChange} name={props.name} type="date" value={props.value}/>
+          <input onChange={props.onChange} required name={props.name} type="date" value={props.value}/>
       </div>
     </div>     
   )
@@ -25,7 +25,7 @@ function Normal_oc(props){
   return(   
     <div className='birth-container-normal'>
       <div className='birthday-normal'>
-          <input onChange={props.onChange} name={props.name} type="date" value={props.value}/>
+          <input onChange={props.onChange} required name={props.name} type="date" value={props.value}/>
       </div>
     </div>  
   )

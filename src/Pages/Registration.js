@@ -22,9 +22,19 @@ function Registration() {
   const dispatch = useDispatch();
 
   const PostMember = async () => {
-    const result = await axios.post(`/api/member-data`,{"member-data":member_data,"category-data":category_data});
-    console.log(result.data);
-    dispatch(setLoad(false));
+    try{
+        const result = await axios.post(`/api/member-data`,{"member-data":member_data,"category-data":category_data}).catch((error) => {
+          console.error(error.message);
+          dispatch(setLoad(false));
+        });
+        console.log(result.data);
+        dispatch(setLoad(false));
+    }
+    catch(e){
+      if(e instanceof TypeError){
+        console.error('Type Error Ekak Machan');
+      }
+    }
   };
 
   useEffect(()=>{
@@ -39,10 +49,12 @@ function Registration() {
 
   return (
     <div className='reg-body'>
+
       <LOADER show={isloads}/>
       <div className='reg-heading'>
         <REG_HEADER/>
       </div>
+
       <div className='personals'>
         <div className='reg-form'>
           <div className='form-data'>
@@ -50,8 +62,10 @@ function Registration() {
           </div>
         </div>
       </div>
-    </div> 
+
+    </div>
   )
 }
+
 
 export default Registration 
