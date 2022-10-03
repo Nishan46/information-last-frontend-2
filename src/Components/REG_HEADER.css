@@ -83,8 +83,9 @@
     @media only screen and (orientation:landscape)
     {
         .reg-header #reg-logo{
-            width: 300px;
-            /* margin-right: 50px; */
+            position: relative;
+            width: 250px;
+            margin-bottom: 55px;
         }
         .reg-header .blur-head{
             display: flex;

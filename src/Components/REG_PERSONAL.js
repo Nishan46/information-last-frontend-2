@@ -103,7 +103,6 @@ function REG_PERSONAL() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(innerWithh);
     if(innerWithh >= 750){
       setIsGenderRow(true);
     }
@@ -124,13 +123,6 @@ function REG_PERSONAL() {
           setisCategoryChoosed(false);
         }
       }
-    }
-
-
-    return ()=>{
-      setRegisterValues({...registerValues, [Key]:""});
-      setCategoryValues({...categoryValues, [Key]:""});
-      setErrorValues({...errorValues, [Key]:""});
     }
   }, [errorValues , innerWithh]);
 
