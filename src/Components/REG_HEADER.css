@@ -9,13 +9,14 @@
     background-size: cover;
     overflow-y: none;
 }
-/* .language-selector{
+.language-selector{
     width: fit-content;
     height: fit-content;
     display: flex;
     align-items: center;
 }
-.language-selector > select{
+
+/* .language-selector > select{
     width:100px;
     padding:10px;
     background-color: transparent;
@@ -50,7 +51,7 @@
         color: white;
         background-color: rgb(0, 0, 0,0.5);
         backdrop-filter: blur(1px);
-        height: 100vh;
+        height: 100%;
     }
     .reg-header #reg-logo{
         width: 250px;
@@ -65,9 +66,9 @@
         flex-direction: column;
         font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         text-align: center;
+        position: relative;
     }
     #welcome-header{
-        width: 90%;
         margin-bottom: 20px;
     }
     .reg-header .blur-head .header-texts >p{
@@ -83,7 +84,7 @@
     {
         .reg-header #reg-logo{
             width: 300px;
-            margin-left: 20px;
+            /* margin-right: 50px; */
         }
         .reg-header .blur-head{
             display: flex;
@@ -96,20 +97,18 @@
             height: 100vh;
         }
         .header-texts{
+            
             align-items: center;
             justify-content: center;
-            /* height: 80vh; */
             display: flex;
             flex-direction: column;
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
-        #welcome-header{
-            width: 90%;
-            margin-bottom: 20px;
+        .header-texts *{
+            text-align: center;
         }
         .reg-header .blur-head .header-texts >p{
             width: 90%;
-            text-align: left;
             margin-bottom: 20px;
         }
     }

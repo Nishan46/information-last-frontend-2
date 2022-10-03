@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom'
 import './Home.css'
 
 
+
 function Home() {
   var {email_id} = useParams();
 

@@ -9,6 +9,8 @@ import {useDispatch} from 'react-redux';
 import { setData , setLoader} from '../Frontend/features/memberSlice';
 import Language from '../Languages'
 import {useSelector} from 'react-redux';
+import { render } from '@testing-library/react';
+import { Key } from '@mui/icons-material';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -17,8 +19,21 @@ const registerData = {user_name:"",first_name:"",last_name:"",admission_id:"",gr
 
 const categoryData = {photoghaphy:false,videography:false,technical:false,announcing:false,reporting:false,photo_editing:false,video_editing:false,graphic_design:false,web_design:false}
 
+function useWindowSize(){
+  const [width,setWidth] = useState(window.outerWidth);
+  useEffect(()=>{
+    const HandleResize = ()=>{
+      setWidth(window.outerWidth);
+    }
+    window.addEventListener("resize",HandleResize)
+    return ()=>{
+      window.removeEventListener("resize",HandleResize);
+    }
+  },[])
+  return width;
+}
 
-
+ 
 function REG_PERSONAL() {
   const [registerValues,setRegisterValues] = useState(registerData);
   const [categoryValues,setCategoryValues] = useState(categoryData);
@@ -26,13 +41,16 @@ function REG_PERSONAL() {
   const [isSubmitted,setIssubmitted] = useState(false);
   const [isCategoryChoosed,setisCategoryChoosed] = useState(true);
   const currentLanguage = useSelector((state)=>state.lang.language);
-  
+  const [isGenderRow,setIsGenderRow] = useState(false);
+  const innerWithh = useWindowSize();
 
   const HandleSubmit = (event) =>{
     event.preventDefault();
     setErrorValues(validate(registerValues));
     setIssubmitted(true);
   }
+
+
 
   const validate = (values) =>{
     const errors = {};
@@ -85,12 +103,18 @@ function REG_PERSONAL() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(innerWithh);
+    if(innerWithh >= 750){
+      setIsGenderRow(true);
+    }
+    else{
+      setIsGenderRow(false);
+    }
     if (Object.keys(errorValues).length === 0 && isSubmitted && isCategoryChoosed) {
       for(let items in categoryValues)
       {
         if(categoryValues[items] === true)
         {
-          document.documentElement.scrollTop = 0;
           dispatch(setData({isload:true ,member_data:registerValues,category_data:categoryValues}))
           setisCategoryChoosed(true);
           break;
@@ -100,9 +124,18 @@ function REG_PERSONAL() {
           setisCategoryChoosed(false);
         }
       }
-
     }
-  }, [errorValues]);
+
+
+    return ()=>{
+      setRegisterValues({...registerValues, [Key]:""});
+      setCategoryValues({...categoryValues, [Key]:""});
+      setErrorValues({...errorValues, [Key]:""});
+    }
+  }, [errorValues , innerWithh]);
+
+
+
 
   const HandleChange = (e) =>{
     const {name , value} = e.target;
@@ -162,13 +195,13 @@ function REG_PERSONAL() {
           {errorValues.phone && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.phone}</p></div>}
 
           <label htmlFor='gndbox'>{Language[currentLanguage].gender}</label>
-          <Valid_Gender currentLanguage={currentLanguage} error={errorValues.gender && true} onChange={HandleChange} er={errorValues.gender}/>
+          <Valid_Gender isGenderRow={isGenderRow} currentLanguage={Language[currentLanguage]}  error={errorValues.gender && true} onChange={HandleChange} er={errorValues.gender}/>
           
           <label>{Language[currentLanguage].Categories_Your_Interested}</label>
           <ValidCategory currentLanguage={currentLanguage} valid={isCategoryChoosed} HandleChecked={HandleChecked}/>
           <div className='btn-container'>
               <Button className='btnsubmit' type='submit' variant='contained'>Register</Button>
-            </div>
+          </div>
         </form>
   )
 }
@@ -179,15 +212,15 @@ const Valid_Gender = (props) =>{
       <div className='gender-container-error'>
         <FormControl>
           <RadioGroup
-            row={false}
+            row={props.isGenderRow}
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="gender"
             onChange={props.onChange}
             error={props.er}
           >
-            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Male" control={<Radio required size='small'/>} label={Language[props.currentLanguage].male} />
-            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Female" control={<Radio required size='small'/>} label={Language[props.currentLanguage].female}/>
-            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Other" control={<Radio required size='small'/>} label={Language[props.currentLanguage].other}/>
+            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Male" control={<Radio required size='small'/>} label={props.currentLanguage.male} />
+            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Female" control={<Radio required size='small'/>} label={props.currentLanguage.female}/>
+            <FormControlLabel sx={{color:'rgb(255,0,0)'}} value="Other" control={<Radio required size='small'/>} label={props.currentLanguage.other}/>
           </RadioGroup>
         </FormControl>
         {props.er && <div style={{'display':'block'}} className='error-alert'><p>{props.er}</p></div>}
@@ -199,15 +232,15 @@ const Valid_Gender = (props) =>{
       <div className='gender-container-normal'>
         <FormControl>
           <RadioGroup
-            row={false}
+            row={props.isGenderRow}
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="gender"
             onChange={props.onChange}
             error={props.er}
           >
-            <FormControlLabel sx={{color:'rgb(0,0,0)'}} value="Male" control={<Radio size='small'/>} label="Male" />
-            <FormControlLabel  sx={{color:'rgb(0,0,0)'}} value="Female" control={<Radio size='small'/>} label="Female" />
-            <FormControlLabel sx={{color:'rgb(0,0,0)'}}  value="Other" control={<Radio size='small'/>} label="Other" />
+            <FormControlLabel sx={{color:'rgb(0,0,0)'}} value="Male" control={<Radio size='small'/>} label={props.currentLanguage.male} />
+            <FormControlLabel  sx={{color:'rgb(0,0,0)'}} value="Female" control={<Radio size='small'/>} label={props.currentLanguage.female} />
+            <FormControlLabel sx={{color:'rgb(0,0,0)'}}  value="Other" control={<Radio size='small'/>} label={props.currentLanguage.other} />
           </RadioGroup>
         </FormControl>
         {props.er && <div style={{'display':'block'}} className='error-alert'><p>{props.er}</p></div>}

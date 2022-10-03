@@ -13,6 +13,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import LOADER from '../Additonals/LOADER'
 import { setLoad } from '../Frontend/features/memberSlice'
 import axios from 'axios';
+import DROPDOWN from '../Additonals/DROPDOWN'
 
 function Registration() {
   
@@ -41,28 +42,32 @@ function Registration() {
     if(isloads)
     {
       PostMember();
-      // setTimeout(()=>{   
-        
-      // },10)
     }
   },[isloads])
+  const HandleDropDown = ()=>{
+    document.documentElement.scrollTo({
+      top:window.innerHeight + 55,
+      behavior:'smooth'
+    })
+
+  }
 
   return (
-    <div className='reg-body'>
-
-      <LOADER show={isloads}/>
-      <div className='reg-heading'>
-        <REG_HEADER/>
-      </div>
-
-      <div className='personals'>
-        <div className='reg-form'>
-          <div className='form-data'>
-            <REG_PERSONAL/>
+    <div className='reg-container'>
+        <div className='reg-body'>
+        <DROPDOWN onClick={HandleDropDown}/>
+        <LOADER show={isloads}/>
+        <div className='reg-heading'>
+          <REG_HEADER/>
+        </div>
+        <div className='personals'>
+          <div className='reg-form'>
+            <div className='form-data'>
+              <REG_PERSONAL/>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   )
 }

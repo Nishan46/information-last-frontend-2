@@ -6,6 +6,7 @@ import Logo from '../Assests/MRC PNG.png'
 import Language from '../Languages';
 import { useDispatch , useSelector} from 'react-redux';
 import { setLanguage } from '../Frontend/features/languageSlice';
+import DROPDOWN from '../Additonals/DROPDOWN'
 
 function REG_HEADER() {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ function REG_HEADER() {
         <div className='header-texts'>
             <h2 id='welcome-header'>{Language[currentLang].header_title}</h2>
             <p>{Language[currentLang].header_message_1}</p>
-            <p>{Language[currentLang].header_message_2}</p>
             <div className='language-selector'>
               <FormControl sx={{ m: 1, minWidth: 120 }}>
                   <Select
@@ -33,6 +33,8 @@ function REG_HEADER() {
                   </Select>
                 </FormControl>
             </div>
+            {/* <p>{Language[currentLang].header_message_2}</p> */}
+            {/* <DROPDOWN onClick={HandleDropDown}/> */}
         </div> 
       </div>
     </div>
