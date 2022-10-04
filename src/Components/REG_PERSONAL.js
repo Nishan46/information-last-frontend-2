@@ -192,11 +192,12 @@ function REG_PERSONAL() {
           <label>{Language[currentLanguage].Categories_Your_Interested}</label>
           <ValidCategory currentLanguage={currentLanguage} valid={isCategoryChoosed} HandleChecked={HandleChecked}/>
           <div className='btn-container'>
-              <Button className='btnsubmit' type='submit' variant='contained'>Register</Button>
+              <Button className='btnsubmit' type='submit' variant='contained'>Step 1</Button>
           </div>
         </form>
   )
 }
+
 
 const Valid_Gender = (props) =>{
   if(props.error){

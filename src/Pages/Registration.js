@@ -24,7 +24,7 @@ function Registration() {
 
   const PostMember = async () => {
     try{
-        const result = await axios.post(`/api/member-data`,{"member-data":member_data,"category-data":category_data}).catch((error) => {
+        const result = await axios.post(`/api/member-data`,{"body-data":{"member-data":member_data,"category-data":category_data}}).catch((error) => {
           console.error(error.message);
           dispatch(setLoad(false));
         });
