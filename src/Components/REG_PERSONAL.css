@@ -193,6 +193,7 @@
         .reg-form{
             width: 100%;
             height: 100%;
+            position: relative;
         }
         .form-data{
             margin: 0 auto;
@@ -299,6 +300,9 @@
     .reg-form{
         width: 100%;
         height: 100%;
+        /* position: absolute;
+        left: 0;
+        right: 0; */
     }
     .form-data{
         margin: 0 auto;
@@ -307,6 +311,7 @@
         overflow-y: scroll;
         display: flex;
         flex-direction: column;
+        position: relative;
     }
     ::-webkit-scrollbar{
         display: none;

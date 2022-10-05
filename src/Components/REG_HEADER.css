@@ -7,7 +7,7 @@
     box-sizing: border-box;
     background-attachment: scroll;
     background-size: cover;
-    overflow-y: none;
+    overflow-y: scroll;
 }
 .language-selector{
     width: fit-content;
@@ -145,7 +145,7 @@
         }
      }
 }
-@media only screen and (min-width:1000px){
+@media only screen and (min-width:800px){
     .reg-header .blur-head{
         display: flex;
         align-items: center;
@@ -154,7 +154,8 @@
         color: white;
         background-color: rgb(0, 0, 0,0.5);
         backdrop-filter: blur(2px);
-        height: 100vh;
+        height: fit-content;
+        min-height:100vh ;
     }
     .header-texts{
         align-items: center;

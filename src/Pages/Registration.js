@@ -56,19 +56,20 @@ function Registration() {
   return (
     <div className='reg-container'>
         <div className='reg-body'>
-        <DROPDOWN onClick={HandleDropDown}/>
-        <LOADER show={isloads}/>
-        <div className='reg-heading'>
-          <REG_HEADER/>
-        </div>
-        <div className='personals'>
-          <div className='reg-form'>
-            <div className='form-data'>
-              <REG_PERSONAL/>
-              {/* <REG_Photography/> */}
-            </div>
+          <DROPDOWN onClick={HandleDropDown}/>
+          <LOADER show={isloads}/>
+          <div className='reg-heading'>
+            <REG_HEADER/>
           </div>
-        </div>
+          <div className='personals'>
+            <div className='reg-form'>
+              <div className='form-data'>
+                {/* <REG_PERSONAL/> */}
+                <REG_Photography/>
+              </div>
+            </div>
+            
+          </div>
       </div>
     </div>
   )
