@@ -21,6 +21,7 @@ function Registration() {
   const category_data = useSelector((state)=>state.member.category_data);
   const member_data = useSelector((state)=>state.member.member_data);
   const dispatch = useDispatch();
+  axios.defaults.timeout = 20000;
 
   const PostMember = async () => {
     try{
@@ -28,7 +29,10 @@ function Registration() {
           console.error(error.message);
           dispatch(setLoad(false));
         });
-        console.log(result.data);
+        if(result != null)
+        {
+          console.log(result.data);
+        }
         dispatch(setLoad(false));
     }
     catch(e){
@@ -37,7 +41,6 @@ function Registration() {
       }
     }
   };
-
   useEffect(()=>{
     if(isloads)
     {
@@ -49,9 +52,7 @@ function Registration() {
       top:window.innerHeight + 55,
       behavior:'smooth'
     })
-
   }
-
   return (
     <div className='reg-container'>
         <div className='reg-body'>
@@ -64,6 +65,7 @@ function Registration() {
           <div className='reg-form'>
             <div className='form-data'>
               <REG_PERSONAL/>
+              <REG_Photography/>
             </div>
           </div>
         </div>
@@ -71,6 +73,8 @@ function Registration() {
     </div>
   )
 }
+
+
 
 
 export default Registration 
