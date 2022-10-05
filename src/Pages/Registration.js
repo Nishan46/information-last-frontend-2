@@ -65,7 +65,7 @@ function Registration() {
           <div className='reg-form'>
             <div className='form-data'>
               <REG_PERSONAL/>
-              <REG_Photography/>
+              {/* <REG_Photography/> */}
             </div>
           </div>
         </div>
