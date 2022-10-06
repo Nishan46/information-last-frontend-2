@@ -15,7 +15,7 @@ import { Key } from '@mui/icons-material';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-const registerData = {user_name:"",first_name:"",last_name:"",admission_id:"",grade:"",full_name:"",email:"",phone:"",address:"",birthday:"",gender:""}
+const registerData = {user_name:"",first_name:"",last_name:"",admission_id:"",grade:"",full_name:"",email:"",phone:"",address:"",birthday:"",gender:"",parent_name:"",parent_phone:"",parent_adress:""}
 
 const categoryData = {photoghaphy:false,videography:false,technical:false,announcing:false,reporting:false,photo_editing:false,video_editing:false,graphic_design:false,web_design:false}
 
@@ -45,6 +45,7 @@ function REG_PERSONAL() {
   const innerWithh = useWindowSize();
 
   const HandleSubmit = (event) =>{
+    setRegisterValues({...registerValues,user_name:`MRC_MEDIA@${registerValues.last_name.toUpperCase()}/${registerValues.admission_id}`})
     event.preventDefault();
     setErrorValues(validate(registerValues));
     setIssubmitted(true);
@@ -97,6 +98,15 @@ function REG_PERSONAL() {
     if(!values.gender){
       errors.gender = "gender required";
     }
+    if(!values.parent_name){
+      errors.parent_name = "parent name required";
+    }
+    if(!values.parent_phone){
+      errors.parent_phone = "parent phone required";
+    }
+    if(!values.parent_adress){
+      errors.parent_adress = "parent address required";
+    }
     return errors;
   }
 
@@ -131,7 +141,7 @@ function REG_PERSONAL() {
 
   const HandleChange = (e) =>{
     const {name , value} = e.target;
-    setRegisterValues({...registerValues,[name]:value, user_name:`${registerValues.first_name.toLowerCase()}@${registerValues.admission_id}`});
+    setRegisterValues({...registerValues,[name]:value});
     if(name === "gender")
     {
       setErrorValues({...errorValues,[name]:""})
@@ -145,6 +155,37 @@ function REG_PERSONAL() {
     setCategoryValues({...categoryValues,[name]:checked});
     setisCategoryChoosed(true);
   }
+  const HandleInput = (e) =>{
+    const {name , value} = e.target;
+    if(name === 'phone' || name === 'parent_phone')
+    { 
+      if(value.length <= 12)
+      {
+        e.target.value = value.toString()
+      }
+      else
+      {
+        e.target.value = e.target.value.substring(0,12)
+      }
+    } 
+    else if(name === 'admission_id' && value.length <=4)
+    {
+      e.target.value = value.toString()
+    }
+    else
+    {
+      e.target.value = e.target.value.substring(0,4)
+    }
+    const a = value.split('')
+    if(a[a.length-1].match(/[^a-zA-Z]/))
+    {
+      e.target.value = e.target.value.toString()
+    }
+    else
+    {
+      e.target.value = e.target.value.substring(0,e.target.value.length -1)
+    }
+  } 
 
   return (
     <form onSubmit={HandleSubmit}>
@@ -153,41 +194,53 @@ function REG_PERSONAL() {
           {errorValues.email && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.email}</p></div>}
 
           <label htmlFor='txtfirst'>{Language[currentLanguage].first_name}</label>
-          <TextField id='txtfirst'  required name='first_name' placeholder={Language[currentLanguage].first_name}  fullWidth value={registerValues.first_name} error={errorValues.first_name && true} onChange={HandleChange}/>
+          <TextField id='txtfirst'  required name='first_name' inputProps={{maxLength:20}} placeholder={Language[currentLanguage].first_name}  fullWidth value={registerValues.first_name} error={errorValues.first_name && true} onChange={HandleChange}/>
           {errorValues.first_name && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.first_name}</p></div>}
           
           <label htmlFor='txtlast'>{Language[currentLanguage].last_name}</label>
-          <TextField id='txtlast' required name='last_name' fullWidth placeholder={Language[currentLanguage].last_name}  value={registerValues.last_name} error={errorValues.last_name && true} onChange={HandleChange}/>
+          <TextField id='txtlast' required name='last_name' inputProps={{maxLength:20}} fullWidth placeholder={Language[currentLanguage].last_name}  value={registerValues.last_name} error={errorValues.last_name && true} onChange={HandleChange}/>
           {errorValues.last_name && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.last_name}</p></div>}
 
           <label htmlFor='txtfull'>{Language[currentLanguage].full_name}</label>
-          <TextField id='txtfull' required name='full_name' fullWidth placeholder={Language[currentLanguage].full_name}  value={registerValues.full_name} error={errorValues.full_name && true} onChange={HandleChange}/>
+          <TextField id='txtfull' required name='full_name' inputProps={{maxLength:255}} fullWidth placeholder={Language[currentLanguage].full_name}  value={registerValues.full_name} error={errorValues.full_name && true} onChange={HandleChange}/>
           {errorValues.full_name && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.full_name}</p></div>}
 
           <label htmlFor='txtbirth'>{Language[currentLanguage].birthday}</label>
 
-          <BirthDay value={registerValues.birthday} name='birthday' onChange={HandleChange} error={errorValues.birthday && true}/>
+          <BirthDay value={registerValues.birthday} name='birthday' inputProps={{maxLength:8}} onChange={HandleChange} error={errorValues.birthday && true}/>
             {errorValues.birthday && <div style={{'display':'block','top':'-1px'}} className='error-alert'><p>{errorValues.birthday}</p></div>}
           
 
           <label htmlFor='txtaddress'>{Language[currentLanguage].address}</label>
-          <TextField id='txtaddress' required name='address' fullWidth placeholder={Language[currentLanguage].address}  value={registerValues.address} error={errorValues.address && true} onChange={HandleChange}/>
+          <TextField id='txtaddress' required name='address' inputProps={{maxLength:500}} fullWidth placeholder={Language[currentLanguage].address}  value={registerValues.address} error={errorValues.address && true} onChange={HandleChange}/>
           {errorValues.address && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.address}</p></div>}
 
           <label htmlFor='txtgrade'>{Language[currentLanguage].grade}</label>
-          <TextField id='txtgrade' required name='grade' fullWidth placeholder={Language[currentLanguage].grade}  value={registerValues.grade} error={errorValues.grade && true} onChange={HandleChange}/>
+          <TextField id='txtgrade' required name='grade' inputProps={{maxLength:50}} fullWidth placeholder={Language[currentLanguage].grade}  value={registerValues.grade} error={errorValues.grade && true} onChange={HandleChange}/>
           {errorValues.grade && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.grade}</p></div>}
 
           <label htmlFor='txtindex'>{Language[currentLanguage].admission_id}</label>
-          <TextField id='txtindex' required name='admission_id' fullWidth placeholder={Language[currentLanguage].admission_id} value={registerValues.admission_id} error={errorValues.admission_id && true} onChange={HandleChange}/>
+          <TextField id='txtindex' type={'number'} onInput={HandleInput} required name='admission_id' fullWidth placeholder={Language[currentLanguage].admission_id} value={registerValues.admission_id} error={errorValues.admission_id && true} onChange={HandleChange}/>
           {errorValues.admission_id && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.admission_id}</p></div>}
 
           <label htmlFor='txtmobile'>{Language[currentLanguage].phone}</label>
-          <TextField id='txtmobile' required name='phone' fullWidth placeholder={Language[currentLanguage].phone} value={registerValues.phone} error={errorValues.phone && true} onChange={HandleChange}/>
+          <TextField id='txtmobile' onInput={HandleInput} required name='phone' type={'tel'} fullWidth placeholder={Language[currentLanguage].phone} value={registerValues.phone} error={errorValues.phone && true} onChange={HandleChange}/>
           {errorValues.phone && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.phone}</p></div>}
 
           <label htmlFor='gndbox'>{Language[currentLanguage].gender}</label>
-          <Valid_Gender isGenderRow={isGenderRow} currentLanguage={Language[currentLanguage]}  error={errorValues.gender && true} onChange={HandleChange} er={errorValues.gender}/>
+          <VALID_GENDER isGenderRow={isGenderRow} currentLanguage={Language[currentLanguage]}  error={errorValues.gender && true} onChange={HandleChange} er={errorValues.gender}/>
+
+          <label htmlFor='txtparent'>{Language[currentLanguage].parent_name}</label>
+          <TextField id='txtparent' required name='parent_name' inputProps={{maxLength:255}} fullWidth placeholder={Language[currentLanguage].parent_name} value={registerValues.parent_name} error={errorValues.parent_name && true} onChange={HandleChange}/>
+          {errorValues.parent_name && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.parent_name}</p></div>}
+
+          <label htmlFor='textparentaddress'>{Language[currentLanguage].parent_adress}</label>
+          <TextField id='textparentaddress' required name='parent_adress' inputProps={{maxLength:255}} fullWidth placeholder={Language[currentLanguage].parent_adress} value={registerValues.parent_adress} error={errorValues.parent_adress && true} onChange={HandleChange}/>
+          {errorValues.parent_adress && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.parent_adress}</p></div>}
+
+          <label htmlFor='txtpmobile'>{Language[currentLanguage].parent_phone}</label>
+          <TextField id='txtpmobile' type={'tel'} onInput={HandleInput} required name='parent_phone' fullWidth placeholder={Language[currentLanguage].parent_phone} value={registerValues.parent_phone} error={errorValues.parent_phone && true} onChange={HandleChange}/>
+          {errorValues.parent_phone && <div style={{'display':'block'}} className='error-alert'><p>{errorValues.parent_phone}</p></div>}
           
           <label>{Language[currentLanguage].Categories_Your_Interested}</label>
           <ValidCategory currentLanguage={currentLanguage} valid={isCategoryChoosed} HandleChecked={HandleChecked}/>
@@ -199,7 +252,7 @@ function REG_PERSONAL() {
 }
 
 
-const Valid_Gender = (props) =>{
+const VALID_GENDER = (props) =>{
   if(props.error){
     return(
       <div className='gender-container-error'>

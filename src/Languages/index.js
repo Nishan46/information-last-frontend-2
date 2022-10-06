@@ -34,7 +34,13 @@ const LANGUAGE = {
         //genders
         male:'Male',
         female:'Female',
-        other:'Other'
+        other:'Other',
+
+        // parents
+
+        parent_name:'Parent Name',
+        parent_adress:'Parent Address',
+        parent_phone:'Parent Phone',
     },
     'si':{
 
@@ -45,7 +51,7 @@ const LANGUAGE = {
         header_message_2:`Lorem Ipsum යනු මුද්‍රණ සහ අකුරු සැකසුම් කර්මාන්තයේ ව්‍යාජ පෙළකි. Lorem Ipsum කර්මාන්තයේ ප්‍රමිතිය වී ඇත`,
 
         //personal values
-        email:'විද්යුත් තැපැල් ලිපිනය',
+        email:'විද්‍යුත් තැපැල් ලිපිනය',
         first_name:'මුල් නම',
         last_name:'අවසන් නම',
         full_name:'සම්පූර්ණ නම',
@@ -69,7 +75,12 @@ const LANGUAGE = {
         //genders
         male:'පිරිමි',
         female:'ගැහැණු',
-        other:'වෙනත්'
+        other:'වෙනත්',
+
+        // parents
+        parent_name:'භාරකරුගේ සම්පුර්ණ නම',
+        parent_adress:'භාරකරුගේ ලිපිනය',
+        parent_phone:'භාරකරුගේ දුරකථන අංකය',
     }
 }
 
